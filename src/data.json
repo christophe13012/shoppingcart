@@ -1,0 +1,62 @@
+[
+  {
+    "nom": "Nike Air Max Alpha Savage",
+    "couleur": "Habanero/Ivoire Pâle/Noir",
+    "reference": "AT3378-301",
+    "prix": 100
+  },
+  {
+    "nom": "Nike Air Max 200 (2000 World Stage)",
+    "couleur": "Blanc/Cramoisi brillant/Or université/Noir",
+    "reference": "AQ2568-101",
+    "prix": 125
+  },
+  {
+    "nom": "Jordan Mars 270 Paris Saint-Germain",
+    "couleur": "Infrarouge 23/Noir/Graphite clair/Argent réfléchissant",
+    "reference": "CN2218-600",
+    "prix": 160
+  },
+  {
+    "nom": "Kyrie 5 EP « SpongeBob SquarePants »",
+    "couleur": "Jaune franc/Jaune franc",
+    "reference": "CJ6950-700",
+    "prix": 130
+  },
+  {
+    "nom": "Zoom Freak 1 « Coming to America »",
+    "couleur": "Multicolore/Blanc/Noir/Or métallique",
+    "reference": "BQ5422-900",
+    "prix": 120
+  },
+  {
+    "nom": "Nike Air Max 270 React Bauhaus",
+    "couleur": "Phantom/Rouge université/Noir/Or université",
+    "reference": "AO4971-002",
+    "prix": 160
+  },
+  {
+    "nom": "Nike Air Max 270",
+    "couleur": "Noir/Rouge cocktail/Blanc/Beige clair",
+    "reference": "AH8050-003",
+    "prix": 150
+  },
+  {
+    "nom": "Nike Shox TL",
+    "couleur": "Blanc/Argent métallique/Orange max/Blanc",
+    "reference": "AV3595-100",
+    "prix": 170
+  },
+  {
+    "nom": "Nike Air Max 1 G",
+    "couleur": "Blanc/Gris neutre/Noir/Rouge université",
+    "reference": "AQ0863-100",
+    "prix": 120
+  },
+  {
+    "nom": "Nike Mercurial Vapor 13 Elite FG",
+    "couleur": "Bleu héros/Obsidienne/Blanc",
+    "reference": "AQ4176-414",
+    "prix": 250
+  }
+]
