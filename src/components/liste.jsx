@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import data from "../data.json";
 import Card from "./card";
 import PointureModal from "./pointureModal.jsx";
+import Panier from "./panier";
 
 class Liste extends Component {
   state = {
@@ -26,28 +27,31 @@ class Liste extends Component {
     const index = panier.findIndex(
       el => el.reference === item.reference && el.pointure === item.pointure
     );
-    index === -1 ? panier.push(item) : panier[index].quantité++;
+    index === -1 ? panier.push(item) : panier[index].quantity++;
     this.setState({ panier });
   };
   render() {
     return (
-      <div style={{ marginTop: 40 }} className="container">
-        <div className="row justify-content-between">
-          {this.state.sneakers.map(sneaker => (
-            <Card
-              key={sneaker.reference}
-              sneaker={sneaker}
-              onClick={this.HandleAdd}
-            />
-          ))}
+      <React.Fragment>
+        <Panier panier={this.state.panier} />
+        <div style={{ marginTop: 40 }} className="container">
+          <div className="row justify-content-between">
+            {this.state.sneakers.map(sneaker => (
+              <Card
+                key={sneaker.reference}
+                sneaker={sneaker}
+                onClick={this.HandleAdd}
+              />
+            ))}
+          </div>
+          <PointureModal
+            onHide={this.HandleHidePointure}
+            sneaker={this.state.sneaker}
+            show={this.state.showPointure}
+            onAddPanier={this.handleAddPanier}
+          />
         </div>
-        <PointureModal
-          onHide={this.HandleHidePointure}
-          sneaker={this.state.sneaker}
-          show={this.state.showPointure}
-          onAddPanier={this.handleAddPanier}
-        />
-      </div>
+      </React.Fragment>
     );
   }
 }

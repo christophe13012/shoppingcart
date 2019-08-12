@@ -50,7 +50,7 @@ class PointureModal extends Component {
             onClick={() =>
               onAddPanier({
                 ...sneaker,
-                ...{ pointure: this.state.pointure, quantité: 1 }
+                ...{ pointure: this.state.pointure, quantity: 1 }
               })
             }
             disabled={
