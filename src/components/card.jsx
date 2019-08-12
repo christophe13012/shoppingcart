@@ -16,7 +16,7 @@ class Card extends Component {
           <p className="card-text">Référence : {sneaker.reference}</p>
           <p className="card-text">Prix : {sneaker.prix}</p>
           <button
-            onClick={() => onClick({ ...sneaker })}
+            onClick={() => onClick(sneaker)}
             href="#"
             className="btn btn-primary"
           >

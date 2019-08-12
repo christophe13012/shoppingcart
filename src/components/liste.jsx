@@ -21,6 +21,14 @@ class Liste extends Component {
   HandleHidePointure = () => {
     this.setState({ showPointure: false });
   };
+  handleAddPanier = item => {
+    const panier = [...this.state.panier];
+    const index = panier.findIndex(
+      el => el.reference === item.reference && el.pointure === item.pointure
+    );
+    index === -1 ? panier.push(item) : panier[index].quantité++;
+    this.setState({ panier });
+  };
   render() {
     return (
       <div style={{ marginTop: 40 }} className="container">
@@ -37,6 +45,7 @@ class Liste extends Component {
           onHide={this.HandleHidePointure}
           sneaker={this.state.sneaker}
           show={this.state.showPointure}
+          onAddPanier={this.handleAddPanier}
         />
       </div>
     );

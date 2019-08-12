@@ -7,7 +7,7 @@ class PointureModal extends Component {
     this.setState({ pointure });
   };
   render() {
-    const { sneaker, onHide, show, onPanier } = this.props;
+    const { sneaker, onHide, show, onAddPanier } = this.props;
     const pointureRange = [38, 39, 40, 41, 42, 43, 44, 45];
     return (
       <Modal
@@ -47,7 +47,12 @@ class PointureModal extends Component {
         <Modal.Footer>
           <Button
             className="btn btn-success"
-            onClick={onPanier}
+            onClick={() =>
+              onAddPanier({
+                ...sneaker,
+                ...{ pointure: this.state.pointure, quantité: 1 }
+              })
+            }
             disabled={
               pointureRange.includes(this.state.pointure) ? false : true
             }
