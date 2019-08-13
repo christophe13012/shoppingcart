@@ -38,10 +38,13 @@ class Liste extends Component {
     index === -1 ? panier.push(item) : panier[index].quantity++;
     this.setState({ panier, showPointure: false });
   };
+  handleOpenCommande = () => {
+    this.setState({ showCommande: true });
+  };
   render() {
     return (
       <React.Fragment>
-        <Panier panier={this.state.panier} />
+        <Panier panier={this.state.panier} onClick={this.handleOpenCommande} />
         <div style={{ marginTop: 40 }} className="container">
           <div className="row justify-content-between">
             {this.state.sneakers.map(sneaker => (

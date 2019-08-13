@@ -17,8 +17,12 @@ class Panier extends Component {
           right: 10
         }}
       >
-        <button type="button" className="btn btn-info">
-          <img src="images/cart.png" /> Articles
+        <button
+          type="button"
+          className="btn btn-info"
+          onClick={this.props.onClick}
+        >
+          <img src="images/cart.png" alt="cart" /> Articles
           <span className="badge badge-light ml-1">{total} </span>
         </button>
       </div>

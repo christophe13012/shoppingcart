@@ -2,15 +2,13 @@ import React, { Component } from "react";
 import { Button, Modal } from "react-bootstrap/";
 
 class Commande extends Component {
-  state = { pointure: 0 };
-  onSelect = pointure => {
-    this.setState({ pointure });
-  };
   render() {
     const { panier, onHide, show } = this.props;
-    const pointureRange = [38, 39, 40, 41, 42, 43, 44, 45];
+    const total = panier.reduce((a, b) => a + b.prix, 0);
+    panier.sort((a, b) => a.nom.localeCompare(b.nom));
     return (
       <Modal
+        size="lg"
         show={show}
         onHide={onHide}
         aria-labelledby="contained-modal-title-vcenter"
@@ -18,49 +16,51 @@ class Commande extends Component {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            {sneaker.nom}
+            Voici le détails de votre panier
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h5>Choisissez votre pointure</h5>
-          <div className="container">
-            <div className="row justify-content-around">
-              {pointureRange.map(pointure => {
-                return (
-                  <button
-                    key={pointure}
-                    onClick={() => this.onSelect(pointure)}
-                    type="button"
-                    className={
-                      pointure === this.state.pointure
-                        ? "btn btn-dark btn-lg"
-                        : "btn btn-outline-dark btn-lg"
-                    }
-                  >
-                    {pointure}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+          {panier.length === 0 ? (
+            <div>Votre panier est vide </div>
+          ) : (
+            <React.Fragment>
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Article</th>
+                    <th scope="col">Référence</th>
+                    <th scope="col">Pointure</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Quantité</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {panier.map(item => (
+                    <tr>
+                      <th scope="row">{item.nom}</th>
+                      <td>{item.reference}</td>
+                      <td>{item.pointure}</td>
+                      <td>{item.prix}€</td>
+                      <td>{item.quantity}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <span
+                style={{ fontSize: 20 }}
+                className="badge badge-info float-right mt-2 mr-3"
+              >
+                Total : <span className="badge badge-light ml-2">{total}€</span>
+              </span>
+            </React.Fragment>
+          )}
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            className="btn btn-success"
-            onClick={() =>
-              onAddPanier({
-                ...sneaker,
-                ...{ pointure: this.state.pointure, quantity: 1 }
-              })
-            }
-            disabled={
-              pointureRange.includes(this.state.pointure) ? false : true
-            }
-          >
-            Valider
+          <Button className="btn btn-success" disabled>
+            Valider et procéder au paiement
           </Button>
           <Button className="btn btn-secondary" onClick={onHide}>
-            Annuler
+            Retour au shopping
           </Button>
         </Modal.Footer>
       </Modal>
