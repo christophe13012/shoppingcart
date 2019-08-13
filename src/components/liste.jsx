@@ -36,8 +36,6 @@ class Liste extends Component {
     index === -1
       ? panier.push({ ...item, ...{ id: panier.length } })
       : panier[index].quantity++;
-    console.log(panier);
-
     this.setState({ panier, showPointure: false });
   };
   handleOpenCommande = () => {
