@@ -55,7 +55,7 @@ const Commande = ({
 
                     <td>
                       <button
-                        style={{ width: 25 }}
+                        style={{ width: 30 }}
                         type="button"
                         className="btn btn-secondary btn-sm mr-1"
                         onClick={() => onDecrement(item.id)}
@@ -63,7 +63,7 @@ const Commande = ({
                         -
                       </button>
                       <button
-                        style={{ width: 25 }}
+                        style={{ width: 30 }}
                         type="button"
                         className="btn btn-success btn-sm mr-1"
                         onClick={() => onIncrement(item.id)}
@@ -72,7 +72,7 @@ const Commande = ({
                       </button>
 
                       <button
-                        style={{ width: 25 }}
+                        style={{ width: 30 }}
                         type="button"
                         className="btn btn-danger btn-sm"
                         onClick={() => onDelete(item.id)}
