@@ -43,6 +43,24 @@ class Liste extends Component {
   handleOpenCommande = () => {
     this.setState({ showCommande: true });
   };
+  handleDelete = id => {
+    const panier = [...this.state.panier].filter(item => item.id !== id);
+    this.setState({ panier });
+  };
+  handleDecrement = id => {
+    const panier = [...this.state.panier];
+    const index = panier.findIndex(item => item.id === id);
+    panier[index].quantity === 1
+      ? panier.splice(index, 1)
+      : panier[index].quantity--;
+    this.setState({ panier });
+  };
+  handleIncrement = id => {
+    const panier = [...this.state.panier];
+    const index = panier.findIndex(item => item.id === id);
+    panier[index].quantity++;
+    this.setState({ panier });
+  };
   render() {
     return (
       <React.Fragment>
@@ -67,6 +85,9 @@ class Liste extends Component {
             show={this.state.showCommande}
             onHide={this.HandleHideModals}
             panier={this.state.panier}
+            onDelete={this.handleDelete}
+            onDecrement={this.handleDecrement}
+            onIncrement={this.handleIncrement}
           />
         </div>
       </React.Fragment>

@@ -1,14 +1,22 @@
 import React, { Component } from "react";
 import { Button, Modal } from "react-bootstrap/";
+import "../App.css";
 
 class Commande extends Component {
   render() {
-    const { panier, onHide, show } = this.props;
-    const total = panier.reduce((a, b) => a + b.prix, 0);
+    const {
+      panier,
+      onHide,
+      show,
+      onDelete,
+      onDecrement,
+      onIncrement
+    } = this.props;
+    const total = panier.reduce((a, b) => a + b.prix * b.quantity, 0);
     panier.sort((a, b) => a.nom.localeCompare(b.nom));
     return (
       <Modal
-        size="lg"
+        dialogClassName="modal-90w"
         show={show}
         onHide={onHide}
         aria-labelledby="contained-modal-title-vcenter"
@@ -27,11 +35,14 @@ class Commande extends Component {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">Article</th>
+                    <th className="w-25" scope="col">
+                      Article
+                    </th>
                     <th scope="col">Référence</th>
                     <th scope="col">Pointure</th>
-                    <th scope="col">Prix</th>
                     <th scope="col">Quantité</th>
+                    <th scope="col">Prix unitaire</th>
+                    <th scope="col">Prix total</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -40,8 +51,37 @@ class Commande extends Component {
                       <th scope="row">{item.nom}</th>
                       <td>{item.reference}</td>
                       <td>{item.pointure}</td>
-                      <td>{item.prix}€</td>
                       <td>{item.quantity}</td>
+                      <td>{item.prix}€</td>
+                      <td>{item.prix * item.quantity}€</td>
+
+                      <td>
+                        <button
+                          style={{ width: 25 }}
+                          type="button"
+                          className="btn btn-secondary btn-sm mr-1"
+                          onClick={() => onDecrement(item.id)}
+                        >
+                          -
+                        </button>
+                        <button
+                          style={{ width: 25 }}
+                          type="button"
+                          className="btn btn-success btn-sm mr-1"
+                          onClick={() => onIncrement(item.id)}
+                        >
+                          +
+                        </button>
+
+                        <button
+                          style={{ width: 25 }}
+                          type="button"
+                          className="btn btn-danger btn-sm"
+                          onClick={() => onDelete(item.id)}
+                        >
+                          X
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
