@@ -7,8 +7,6 @@ class Panier extends Component {
       this.props.panier.length === 0
         ? 0
         : this.props.panier.reduce((a, b) => a + b.quantity, 0);
-    console.log(this.props.panier);
-
     return (
       <div
         style={{

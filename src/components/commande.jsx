@@ -36,7 +36,7 @@ class Commande extends Component {
                 </thead>
                 <tbody>
                   {panier.map(item => (
-                    <tr>
+                    <tr key={item.id}>
                       <th scope="row">{item.nom}</th>
                       <td>{item.reference}</td>
                       <td>{item.pointure}</td>

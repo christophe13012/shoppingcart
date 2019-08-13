@@ -18,8 +18,6 @@ class Liste extends Component {
     this.setState({ sneakers: data });
   }
   HandleAdd = sneaker => {
-    console.log(sneaker);
-
     this.setState({ sneaker, showPointure: true });
   };
   HandleHideModals = () => {
@@ -35,7 +33,11 @@ class Liste extends Component {
     const index = panier.findIndex(
       el => el.reference === item.reference && el.pointure === item.pointure
     );
-    index === -1 ? panier.push(item) : panier[index].quantity++;
+    index === -1
+      ? panier.push({ ...item, ...{ id: panier.length } })
+      : panier[index].quantity++;
+    console.log(panier);
+
     this.setState({ panier, showPointure: false });
   };
   handleOpenCommande = () => {
