@@ -1,15 +1,18 @@
 import React, { Component } from "react";
+import { toast } from "react-toastify";
 import data from "../data.json";
 import Card from "./card";
 import PointureModal from "./pointureModal.jsx";
 import Panier from "./panier";
+import Commande from "./commande.jsx";
 
 class Liste extends Component {
   state = {
     sneakers: [],
     panier: [],
     sneaker: {},
-    showPointure: false
+    showPointure: false,
+    showCommande: false
   };
   componentDidMount() {
     this.setState({ sneakers: data });
@@ -19,16 +22,21 @@ class Liste extends Component {
 
     this.setState({ sneaker, showPointure: true });
   };
-  HandleHidePointure = () => {
-    this.setState({ showPointure: false });
+  HandleHideModals = () => {
+    this.setState({ showPointure: false, showCommande: false });
   };
   handleAddPanier = item => {
+    toast.success(
+      `L'article ${this.state.sneaker.nom} en taille ${
+        item.pointure
+      } a bien été ajouté au panier`
+    );
     const panier = [...this.state.panier];
     const index = panier.findIndex(
       el => el.reference === item.reference && el.pointure === item.pointure
     );
     index === -1 ? panier.push(item) : panier[index].quantity++;
-    this.setState({ panier });
+    this.setState({ panier, showPointure: false });
   };
   render() {
     return (
@@ -45,10 +53,15 @@ class Liste extends Component {
             ))}
           </div>
           <PointureModal
-            onHide={this.HandleHidePointure}
+            onHide={this.HandleHideModals}
             sneaker={this.state.sneaker}
             show={this.state.showPointure}
             onAddPanier={this.handleAddPanier}
+          />
+          <Commande
+            show={this.state.showCommande}
+            onHide={this.HandleHideModals}
+            panier={this.state.panier}
           />
         </div>
       </React.Fragment>
