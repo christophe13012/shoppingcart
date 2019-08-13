@@ -96,9 +96,11 @@ class Commande extends Component {
           )}
         </Modal.Body>
         <Modal.Footer>
-          <Button className="btn btn-success" disabled>
-            Valider et procéder au paiement
-          </Button>
+          {panier.length !== 0 && (
+            <Button className="btn btn-success" disabled>
+              Valider et procéder au paiement
+            </Button>
+          )}
           <Button className="btn btn-secondary" onClick={onHide}>
             Retour au shopping
           </Button>
